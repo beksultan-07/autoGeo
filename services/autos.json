@@ -1,0 +1,47 @@
+{
+    "autos": [
+    {
+        "id": 1,
+        "coordinate": {
+            "latitude": 37.8,
+            "longitude": -122.434
+        },
+        "category": "b",
+        "owner": "Bella",
+        "contacts": "12312423423"
+    },
+
+    {
+        "id": 2,
+        "coordinate": {
+            "latitude": 37.7885,
+            "longitude": -122.43
+        },
+        "category": "b",
+        "owner": "Jake",
+        "contacts": "12312423423"
+    },
+
+    {
+        "id": 3,
+        "coordinate": {
+            "latitude": 37.788,
+            "longitude": -122.42
+        },
+        "category": "b",
+        "owner": "Jordan",
+        "contacts": "12312423423"
+    },
+
+    {
+        "id": 4,
+        "coordinate": {
+            "latitude": 37.78,
+            "longitude": -122.415
+        },
+        "category": "b",
+        "owner": "Michael",
+        "contacts": "12312423423"
+    }
+]
+}
