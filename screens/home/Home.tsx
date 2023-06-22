@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { useRoute } from '@react-navigation/native';
 import { getAutos } from '../../services/getAutos';
 import RenderAutos, { autoType } from '../../components/renderAutos/RenderAutos';
 import AutoFilter from '../../components/autoFilter/AutoFilter';
 import AutoInfo from '../../components/autoInfo/AutoInfo';
+
 
 const Home = () => {
   
@@ -16,12 +18,33 @@ const Home = () => {
   const [selectedAutos, setSelectedAutos] = React.useState<Array<string>>([]);
   const [modalVisiblity, setModalVisiblity] = React.useState(false)
 
+  const mapRef = React.useRef<MapView>(null);
+  const route = useRoute();
+
   React.useEffect(() => {
     setAutos(getAutos())
   }, [])
 
   React.useEffect(() => {
-    console.log(selectedAutos);
+    const auto = route.params?.auto;
+    
+    if (auto) {
+      setCurrentAutos(auto);
+      setInfoVisible(true);
+
+      if (mapRef.current) {
+        mapRef.current.animateToRegion({
+          latitude: auto.coordinate.latitude,
+          longitude: auto.coordinate.longitude,
+          latitudeDelta: 0,
+          longitudeDelta: 0
+        });
+      }
+    }
+  }, [route])
+  
+
+  React.useEffect(() => {
     const allAutos = getAutos()
     setAutos(allAutos.filter(auto => selectedAutos.includes(auto.category) || selectedAutos.length === 0))
   }, [selectedAutos])
@@ -36,6 +59,7 @@ const Home = () => {
   }
 
   const mapClickhandler = () => {
+    setCurrentAutos(null)
     setInfoVisible(false)
     setModalVisiblity(false)
   }
@@ -52,6 +76,7 @@ const Home = () => {
       <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
+        ref={mapRef}
         initialRegion={{
           latitude: 37.78825,
           longitude: -122.4324,

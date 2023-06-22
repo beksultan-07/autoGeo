@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { autoType } from '../renderAutos/RenderAutos'
 
 type Props = {
@@ -8,16 +8,28 @@ type Props = {
 } 
 
 const AutoInfo:React.FC<Props> = ({autoInfo, infoVisible}) => {
+
+    const callHandler = (num: string) => {
+        Linking.openURL(`tel:${num}`);
+    }
+
+    const whatsappClickHandler = (num: string) => {
+        const message = 'Добрый день, подскажите пожалуйста, какой номер заказа у вас сейчас в работе'; 
+        const url = `whatsapp://send?phone=${num}&text=${encodeURIComponent(message)}`;
+        Linking.openURL(url);
+    }
+
+
   return (
     <View style={[styles.wrap, infoVisible ? styles.active : {}]}>
         <Text style={styles.text}>name: {autoInfo?.owner}</Text>
         <Text style={styles.text}>category: {autoInfo?.category}</Text>
         <Text style={styles.text}>contacts: {autoInfo?.contacts}</Text>
         <View style={styles.buttons}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => callHandler(autoInfo.contacts)}>
                 <Text>Позвонить</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => whatsappClickHandler(autoInfo.contacts)}>
                 <Text>Написать</Text>
             </TouchableOpacity>
         </View>

@@ -1,16 +1,23 @@
 import React from 'react'
-import { StyleSheet, Text, ScrollView, View } from 'react-native'
+import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native'
 import { getAutos } from '../../services/getAutos'
 import { autoType } from 'components/renderAutos/RenderAutos'
+import { useNavigation } from '@react-navigation/native';
 
 const Autos = () => {
 
   const [autos, setAutos] = React.useState<Array<autoType>>([])
 
+  const navigation = useNavigation();
 
   React.useEffect(() => {
     setAutos(getAutos())
   }, [])
+
+  const autoHandleClick = (autoData: autoType) => {
+    navigation.navigate('Home', { auto: autoData }); 
+
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -21,11 +28,13 @@ const Autos = () => {
       </View>
       {
         autos ? autos.map((auto) => (
-          <View key={auto.id} style={styles.body}>
-            <Text style={styles.headerItem}>{auto.id}</Text>
-            <Text style={styles.headerItem}>{auto.owner}</Text>
-            <Text style={styles.headerItem}>{auto.category}</Text>
-          </View>
+          <TouchableOpacity onPress={() => autoHandleClick(auto)}>
+            <View key={auto.id} style={styles.body}>
+              <Text style={styles.headerItem}>{auto.id}</Text>
+              <Text style={styles.headerItem}>{auto.owner}</Text>
+              <Text style={styles.headerItem}>{auto.category}</Text>
+            </View>
+          </TouchableOpacity>
         ))
         : <Text>...Loading...</Text>
       }
