@@ -1,72 +1,92 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList } from 'react-native'
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 
 type Props = {
-    handleSelect(value: string): void
+    selectedValues: any[]
+    onSelect: (values: any) => void
+    openModel(visibility: boolean): void
+    modalVisiblity: boolean
 }
 
-const AutoFilter:React.FC<Props> = ({handleSelect}) => {
-    const [isOpen, setIsOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState('');
-    const [options] = React.useState(['B', 'C', 'D', 'all']);
+const AutoFilter:React.FC<Props> = ({ selectedValues, onSelect, openModel, modalVisiblity }) => {
 
+    const options = ['B', 'D', 'C'];
 
-
-//   const handleSelect = (value) => {
-//     setSelectedValue(value);
-//     setIsOpen(false);
-//   };
-
-  return (
-    <View style={styles.container}>
-        <TouchableOpacity style={styles.header} onPress={() => setIsOpen(!isOpen)}>
-        <Text>{`Категория ${selectedValue}` || 'Категории'}</Text>
+    const toggleOption = (value: string) => {
+        const isSelected = selectedValues.includes(value);
+        if (isSelected) {
+            const updatedValues = selectedValues.filter((val) => val !== value);
+            onSelect(updatedValues);
+        } else {
+            const updatedValues = [...selectedValues, value];
+            onSelect(updatedValues);
+        }
+    };
+  
+    return (
+      <View style={styles.container}>
+        <TouchableOpacity onPress={() => openModel(!modalVisiblity)} style={styles.dropdownButton}>
+          <Text>{selectedValues.length > 0 ? selectedValues.join(', ') : 'Выберите категории ТС'}</Text>
         </TouchableOpacity>
 
-    {isOpen && (
-      <View style={styles.dropdown}>
-        {
-            options.map((option, index) => (
+          <View style={[styles.modalContainer, modalVisiblity && styles.active]}>
+            <FlatList
+              data={options}
+              keyExtractor={(item) => item}
+              renderItem={({ item }) => (
                 <TouchableOpacity
-                    key={index}
-                    style={styles.dropDownItem} 
-                    onPress={() => handleSelect(option)}
+                  style={styles.option}
+                  onPress={() => toggleOption(item)}
                 >
-                    <Text>Категория {option}</Text>
+                  <Text>Категория {item}</Text>
+
+                  {selectedValues.includes(item) && (
+                    <Text style={styles.selectedText}>Selected</Text>
+                  )}
+                
                 </TouchableOpacity>
-            ))
-        }  
+              )}
+            />
+          </View>
       </View>
-    )}
-  </View>
   )
 }
 
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
-        zIndex: 1
-    },
-    header: {
-        backgroundColor: '#f0f0f0',
-        paddingVertical: 10,
-        paddingHorizontal: 12,
-        borderRadius: 5,
-    },
-    dropdown: {
-        position: 'absolute',
-        top: '100%',
-        left: 0,
         zIndex: 1,
-        width: '100%',
-        padding: 10,
-        backgroundColor: '#f0f0f0',
     },
-    dropDownItem: {
-        paddingVertical: 10 
-    }
-});
-    
+    dropdownButton: {
+        padding: 10,
+        backgroundColor: '#fff'
+    },
+    modalContainer: {
+        position: 'absolute',
+        width: '100%',
+        left: 0,
+        top: '-1000%',
+        paddingHorizontal: 20,
+        backgroundColor: 'white',
+    },
+    active: {
+        top: '100%',
+    },
+    option: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingVertical: 10,
+      borderBottomWidth: 1,
+      borderBottomColor: 'lightgray',
+    },
+    selectedText: {
+      color: 'green',
+      fontWeight: 'bold',
+    },
+  });
+   
 
 export default AutoFilter

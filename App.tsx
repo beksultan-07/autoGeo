@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { MapPressEvent, PROVIDER_GOOGLE } from 'react-native-maps';
 import { getAutos } from './services/getAutos';
 import AutosList, { autoType } from './components/autosList/AutosList';
 import AutoFilter from './components/autoFilter/AutoFilter';
@@ -8,37 +8,49 @@ import AutoInfo from './components/autoInfo/AutoInfo';
 
 const App = () => {
   
-  const [autos, setAutos] = React.useState([])
+  const [autos, setAutos] = React.useState<Array<autoType>>([])
 
-  const [currentAutos, setCurrentAutos] = React.useState<autoType | null >()
+  const [currentAutos, setCurrentAutos] = React.useState<autoType>()
 
-  const [selectedAutos, setSelectedAutos] = React.useState('');
+  const [autoInfoVisible, setAutoInfoVisible] = React.useState<boolean>(false)
 
+  const [selectedModalVisible, setSelectedModalVisible] = React.useState(false);
 
-  const autoClick = (auto: autoType) => {
-    setCurrentAutos(auto)
-  }
-
-  const handleSelect = (value: string) => {
-    setSelectedAutos(value);
-  };
+  const [selectedValues, setSelectedValues] = React.useState<Array<string>>([]);
 
   React.useEffect(() => {
     setAutos(getAutos())
   }, [])
 
   React.useEffect(() => {
-    console.log(selectedAutos);
     const allAutos = getAutos()
-    setAutos(allAutos.filter(el => el.category === selectedAutos || selectedAutos === 'all'))
-  }, [selectedAutos])
-  
+    setAutos(allAutos.filter(el => selectedValues.includes(el.category) || selectedValues.length === 0))
+  }, [selectedValues])
 
+  const autoClick = (auto: autoType) => {
+    setCurrentAutos(auto)
+    setAutoInfoVisible(true)
+  }
+
+  const handleSelect = (values: Array<string>) => {
+    setSelectedValues(values);
+  };
+
+  const mapClickHandler = (e: MapPressEvent) => {
+    setAutoInfoVisible(false)
+    setSelectedModalVisible(false)
+  }
 
   return (
     <View style={styles.container}>
-      <AutoFilter handleSelect={handleSelect}/>
+      <AutoFilter 
+        selectedValues={selectedValues} 
+        onSelect={handleSelect}
+        modalVisiblity={selectedModalVisible}
+        openModel={(visible: boolean) => setSelectedModalVisible(visible)}
+      />
       <MapView
+        onPress={(e) => mapClickHandler(e)}
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         initialRegion={{
@@ -51,7 +63,7 @@ const App = () => {
       >
         <AutosList autoClick={autoClick} autos={autos}/>
       </MapView>
-      <AutoInfo autoInfo={currentAutos} closeAutoInfo={() => setCurrentAutos(null)}/>
+      <AutoInfo autoInfo={currentAutos} infoVisible={autoInfoVisible}/>
     </View>
   );
 };

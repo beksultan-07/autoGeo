@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList } from 'react-native'
-import { Marker } from 'react-native-maps';
+import { Marker, MarkerPressEvent } from 'react-native-maps';
 import carIcon from '../../assets/car.png'
 import busIcon from '../../assets/bus.png'
 import truckIcon from '../../assets/truck.png'
@@ -35,14 +35,20 @@ const AutosList:React.FC<Props> = ({autos, autoClick}) => {
             default:
                 return busIcon
         }
-      }
+    }
+
+    const autoClickHandler = (e: MarkerPressEvent, item: autoType) => {
+        e.stopPropagation()
+        autoClick(item)
+    }
+
 
   return (
     <>
         {
             autos.map(item => (
                 <Marker
-                    onPress={() => autoClick(item)}
+                    onPress={(e) => autoClickHandler(e, item)}
                     coordinate={item.coordinate}
                     image={checkAuto(item.category)}
                 />
