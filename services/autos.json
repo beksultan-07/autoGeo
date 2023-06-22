@@ -6,7 +6,7 @@
             "latitude": 37.8,
             "longitude": -122.434
         },
-        "category": "b",
+        "category": "B",
         "owner": "Bella",
         "contacts": "12312423423"
     },
@@ -17,7 +17,7 @@
             "latitude": 37.7885,
             "longitude": -122.43
         },
-        "category": "b",
+        "category": "B",
         "owner": "Jake",
         "contacts": "12312423423"
     },
@@ -28,7 +28,7 @@
             "latitude": 37.788,
             "longitude": -122.42
         },
-        "category": "b",
+        "category": "D",
         "owner": "Jordan",
         "contacts": "12312423423"
     },
@@ -39,7 +39,7 @@
             "latitude": 37.78,
             "longitude": -122.415
         },
-        "category": "b",
+        "category": "C",
         "owner": "Michael",
         "contacts": "12312423423"
     }

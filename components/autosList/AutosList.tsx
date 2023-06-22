@@ -26,10 +26,15 @@ type Props = {
 
 const AutosList:React.FC<Props> = ({autos, autoClick}) => {
 
-    const checkAuto = (category: 'b' | 'c') => {
-        // switch (category){
-        //   case 'b'
-        // }
+    const checkAuto = (category: string) => {
+        switch (category){
+            case 'B':
+                return carIcon
+            case 'D': 
+                return truckIcon
+            default:
+                return busIcon
+        }
       }
 
   return (
@@ -39,7 +44,7 @@ const AutosList:React.FC<Props> = ({autos, autoClick}) => {
                 <Marker
                     onPress={() => autoClick(item)}
                     coordinate={item.coordinate}
-                    image={carIcon}
+                    image={checkAuto(item.category)}
                 />
             ))
         }
