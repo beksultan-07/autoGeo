@@ -1,6 +1,5 @@
 import React from 'react'
-import { FlatList } from 'react-native'
-import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 
 type Props = {
@@ -14,6 +13,7 @@ const AutoFilter:React.FC<Props> = ({ selectedValues, onSelect, openModel, modal
 
     const options = ['B', 'D', 'C'];
 
+    // добовляет либо удаляет option с фильтрации 
     const toggleOption = (value: string) => {
         const isSelected = selectedValues.includes(value);
         if (isSelected) {
@@ -34,7 +34,6 @@ const AutoFilter:React.FC<Props> = ({ selectedValues, onSelect, openModel, modal
           <View style={[styles.modalContainer, modalVisiblity && styles.active]}>
             <FlatList
               data={options}
-              keyExtractor={(item) => item}
               renderItem={({ item }) => (
                 <TouchableOpacity
                   style={styles.option}

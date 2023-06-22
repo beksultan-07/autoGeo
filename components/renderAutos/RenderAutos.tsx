@@ -27,6 +27,8 @@ type Props = {
 
 const RenderAutos:React.FC<Props> = ({autos, onAutoClick}) => {
 
+
+    // проверка по категориям
     const checkAuto = (category: string) => {
         switch (category){
             case 'B':
@@ -38,6 +40,7 @@ const RenderAutos:React.FC<Props> = ({autos, onAutoClick}) => {
         }
     }
 
+    // клик по ТС
     const autoClickHandler = (e: MarkerPressEvent, item: autoType) => {
         e.stopPropagation()
         onAutoClick(item)
@@ -49,6 +52,7 @@ const RenderAutos:React.FC<Props> = ({autos, onAutoClick}) => {
         {
             autos.map(item => (
                 <Marker
+                    key={item.id}
                     onPress={(e) => autoClickHandler(e, item)}
                     coordinate={item.coordinate}
                     image={checkAuto(item.category)}

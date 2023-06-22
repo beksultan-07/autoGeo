@@ -1,10 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
+
 import Home from './screens/home/Home';
 import Autos from './screens/autos/Autos';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Settings from './screens/settings/Settings';
-import { Image } from 'react-native';
+
 import homeIcon from './assets/home.png'
 import listIcon from './assets/list.png'
 import settingsIcon from './assets/setting.png'
@@ -16,7 +18,7 @@ const App = () => {
         <NavigationContainer>
           <Tab.Navigator initialRouteName="Home">
             <Tab.Screen 
-            name="Home" 
+            name='Home'
             component={Home} 
             options={{
               headerShown: false ,
@@ -29,7 +31,7 @@ const App = () => {
             }}
             />
             <Tab.Screen 
-              name="Auto's List" 
+              name="Список ТС" 
               component={Autos}
               options={{
               tabBarIcon: ({ focused }) => (
@@ -40,7 +42,7 @@ const App = () => {
               ),
             }}/>
             <Tab.Screen 
-              name="Settings" 
+              name="Настройки" 
               component={Settings}
               options={{
               tabBarIcon: ({ focused }) => (

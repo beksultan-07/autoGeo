@@ -1,100 +1,100 @@
 {
     "autos": [
-            {
+        {
             "id": 1,
             "coordinate": {
-            "latitude": 37.8,
-            "longitude": -122.434
+            "latitude": 37.774893,
+            "longitude": -122.419362
             },
             "category": "B",
-            "owner": "Emily",
+            "owner": "Oliver",
             "contacts": "12312423423"
             },
             {
             "id": 2,
             "coordinate": {
-            "latitude": 37.8015,
-            "longitude": -122.4335
+            "latitude": 37.795245,
+            "longitude": -122.395360
             },
             "category": "C",
-            "owner": "Jacob",
+            "owner": "Sophia",
             "contacts": "9876543210"
             },
             {
             "id": 3,
             "coordinate": {
-            "latitude": 37.802,
-            "longitude": -122.432
+            "latitude": 37.777493,
+            "longitude": -122.431295
             },
             "category": "D",
-            "owner": "Olivia",
+            "owner": "Mason",
             "contacts": "4567890123"
             },
             {
             "id": 4,
             "coordinate": {
-            "latitude": 37.803,
-            "longitude": -122.431
+            "latitude": 37.781676,
+            "longitude": -122.396772
             },
             "category": "B",
-            "owner": "William",
+            "owner": "Emma",
             "contacts": "7890123456"
             },
             {
             "id": 5,
             "coordinate": {
-            "latitude": 37.8045,
-            "longitude": -122.4305
+            "latitude": 37.807742,
+            "longitude": -122.414604
             },
             "category": "C",
-            "owner": "Sophia",
+            "owner": "Liam",
             "contacts": "2345678901"
             },
             {
             "id": 6,
             "coordinate": {
-            "latitude": 37.805,
-            "longitude": -122.429
+            "latitude": 37.757497,
+            "longitude": -122.386206
             },
             "category": "D",
-            "owner": "Mason",
+            "owner": "Ava",
             "contacts": "6789012345"
             },
             {
             "id": 7,
             "coordinate": {
-            "latitude": 37.8065,
-            "longitude": -122.4285
+            "latitude": 37.781943,
+            "longitude": -122.464891
             },
             "category": "B",
-            "owner": "Ava",
+            "owner": "Jackson",
             "contacts": "3456789012"
             },
             {
             "id": 8,
             "coordinate": {
-            "latitude": 37.807,
-            "longitude": -122.427
+            "latitude": 37.800868,
+            "longitude": -122.408081
             },
             "category": "C",
-            "owner": "Liam",
+            "owner": "Charlotte",
             "contacts": "8901234567"
             },
             {
             "id": 9,
             "coordinate": {
-            "latitude": 37.8085,
-            "longitude": -122.4265
+            "latitude": 37.777836,
+            "longitude": -122.427280
             },
             "category": "D",
-            "owner": "Emma",
+            "owner": "Harper",
             "contacts": "5678901234"
             },
             {
             "id": 10,
             "coordinate": {
-            "latitude": 37.809,
-            "longitude": -122.425
+            "latitude": 37.768011,
+            "longitude": -122.399439
             },
             "category": "B",
             "owner": "Noah",
@@ -103,52 +103,102 @@
             {
             "id": 11,
             "coordinate": {
-            "latitude": 37.8105,
-            "longitude": -122.4245
+            "latitude": 37.785133,
+            "longitude": -122.400137
             },
             "category": "C",
-            "owner": "Isabella",
+            "owner": "Emily",
             "contacts": "4567890123"
             },
             {
             "id": 12,
             "coordinate": {
-            "latitude": 37.811,
-            "longitude": -122.423
+            "latitude": 37.794472,
+            "longitude": -122.430934
             },
             "category": "D",
-            "owner": "James",
+            "owner": "Mia",
             "contacts": "7890123456"
             },
             {
             "id": 13,
             "coordinate": {
-            "latitude": 37.8125,
-            "longitude": -122.4225
+            "latitude": 37.772248,
+            "longitude": -122.440688
             },
             "category": "B",
-            "owner": "Aiden",
+            "owner": "Elijah",
             "contacts": "2345678901"
             },
             {
             "id": 14,
             "coordinate": {
-            "latitude": 37.813,
-            "longitude": -122.421
+            "latitude": 37.798680,
+            "longitude": -122.410835
             },
             "category": "C",
-            "owner": "Mia",
+            "owner": "Avery",
             "contacts": "6789012345"
             },
             {
             "id": 15,
             "coordinate": {
-            "latitude": 37.8145,
-            "longitude": -122.4205
+            "latitude": 37.756500,
+            "longitude": -122.403292
             },
             "category": "D",
-            "owner": "Elijah",
+            "owner": "Aiden",
             "contacts": "3456789012"
+            },
+            {
+            "id": 16,
+            "coordinate": {
+            "latitude": 37.784505,
+            "longitude": -122.452875
+            },
+            "category": "B",
+            "owner": "Scarlett",
+            "contacts": "8901234567"
+            },
+            {
+            "id": 17,
+            "coordinate": {
+            "latitude": 37.804858,
+            "longitude": -122.410110
+            },
+            "category": "C",
+            "owner": "James",
+            "contacts": "5678901234"
+            },
+            {
+            "id": 18,
+            "coordinate": {
+            "latitude": 37.761727,
+            "longitude": -122.433541
+            },
+            "category": "D",
+            "owner": "Abigail",
+            "contacts": "9012345678"
+            },
+            {
+            "id": 19,
+            "coordinate": {
+            "latitude": 37.772687,
+            "longitude": -122.416797
+            },
+            "category": "B",
+            "owner": "Bekas",
+            "contacts": "996507009666"
+            },
+            {
+            "id": 20,
+            "coordinate": {
+            "latitude": 37.789633,
+            "longitude": -122.389038
+            },
+            "category": "C",
+            "owner": "Grace",
+            "contacts": "6789012345"
             }
-]
+    ]
 }

@@ -9,10 +9,13 @@ type Props = {
 
 const AutoInfo:React.FC<Props> = ({autoInfo, infoVisible}) => {
 
+
+    // при нажатии позвонить
     const callHandler = (num: string) => {
         Linking.openURL(`tel:${num}`);
     }
 
+    // при нажатии написать, перекидывает на вотсапп с готовым сообщением 
     const whatsappClickHandler = (num: string) => {
         const message = 'Добрый день, подскажите пожалуйста, какой номер заказа у вас сейчас в работе'; 
         const url = `whatsapp://send?phone=${num}&text=${encodeURIComponent(message)}`;
@@ -22,9 +25,9 @@ const AutoInfo:React.FC<Props> = ({autoInfo, infoVisible}) => {
 
   return (
     <View style={[styles.wrap, infoVisible ? styles.active : {}]}>
-        <Text style={styles.text}>name: {autoInfo?.owner}</Text>
-        <Text style={styles.text}>category: {autoInfo?.category}</Text>
-        <Text style={styles.text}>contacts: {autoInfo?.contacts}</Text>
+        <Text style={styles.text}>Имя: {autoInfo?.owner}</Text>
+        <Text style={styles.text}>Категория: {autoInfo?.category}</Text>
+        <Text style={styles.text}>Номер Телефонв: +{autoInfo?.contacts}</Text>
         <View style={styles.buttons}>
             <TouchableOpacity style={styles.button} onPress={() => callHandler(autoInfo.contacts)}>
                 <Text>Позвонить</Text>

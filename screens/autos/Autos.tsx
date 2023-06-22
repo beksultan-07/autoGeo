@@ -6,15 +6,20 @@ import { useNavigation } from '@react-navigation/native';
 
 const Autos = () => {
 
+  // данные с бэка
   const [autos, setAutos] = React.useState<Array<autoType>>([])
+
 
   const navigation = useNavigation();
 
+  // получение данных
   React.useEffect(() => {
     setAutos(getAutos())
   }, [])
 
+  // перенаправление на главную(на карту), чтоб указать где этот ТС и более подробая инфа
   const autoHandleClick = (autoData: autoType) => {
+    // не пон
     navigation.navigate('Home', { auto: autoData }); 
 
   };
@@ -23,13 +28,13 @@ const Autos = () => {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerItem}>Id</Text>
-        <Text style={styles.headerItem}>Owner Name</Text>
-        <Text style={styles.headerItem}>Category</Text>
+        <Text style={styles.headerItem}>Имя владельца</Text>
+        <Text style={styles.headerItem}>Категория</Text>
       </View>
       {
-        autos ? autos.map((auto) => (
-          <TouchableOpacity onPress={() => autoHandleClick(auto)}>
-            <View key={auto.id} style={styles.body}>
+        autos.length > 0 ? autos.map((auto) => (
+          <TouchableOpacity key={auto.id} onPress={() => autoHandleClick(auto)}>
+            <View style={styles.body}>
               <Text style={styles.headerItem}>{auto.id}</Text>
               <Text style={styles.headerItem}>{auto.owner}</Text>
               <Text style={styles.headerItem}>{auto.category}</Text>
@@ -46,9 +51,9 @@ const Autos = () => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    paddingTop: 40,
+    paddingVertical: 40,
     position: 'relative',
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   header: {
     flexDirection: 'row',

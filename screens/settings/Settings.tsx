@@ -2,17 +2,21 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 const Settings = () => {
+
+  // открытие и закрытие дропдауна 
   const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState('');
+  // значение дропдауна
+  const [selectedValue, setSelectedValue] = React.useState('Russian');
+  // список значении дропдауна
+  const languages = ['Русский', 'English']
 
-  const languages = ['Russian', 'English']
-
-
+  // открытие и закрытие дродауна
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSelect = (value) => {
+  // выбор значения
+  const handleSelect = (value: string) => {
     setSelectedValue(value);
     setIsOpen(false);
   };
@@ -24,7 +28,7 @@ const Settings = () => {
         style={styles.header} 
         onPress={toggleDropdown}
       >
-        <Text style={styles.headerText}>{selectedValue || 'Select'}</Text>
+        <Text style={styles.headerText}>{selectedValue || 'Язык'}</Text>
       </TouchableOpacity>
       {isOpen && (
         <View style={styles.dropdown}>
