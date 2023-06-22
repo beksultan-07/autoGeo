@@ -8,6 +8,7 @@ import truckIcon from '../../assets/truck.png'
 
 
 export type autoType = {
+    id: number
     coordinate: {
         latitude: number;
         longitude: number;
@@ -20,11 +21,11 @@ export type autoType = {
 
 type Props = {
     autos: Array<autoType>,
-    autoClick(auto: autoType): void,
+    onAutoClick(auto: autoType): void,
 
 }
 
-const AutosList:React.FC<Props> = ({autos, autoClick}) => {
+const RenderAutos:React.FC<Props> = ({autos, onAutoClick}) => {
 
     const checkAuto = (category: string) => {
         switch (category){
@@ -39,7 +40,7 @@ const AutosList:React.FC<Props> = ({autos, autoClick}) => {
 
     const autoClickHandler = (e: MarkerPressEvent, item: autoType) => {
         e.stopPropagation()
-        autoClick(item)
+        onAutoClick(item)
     }
 
 
@@ -58,4 +59,4 @@ const AutosList:React.FC<Props> = ({autos, autoClick}) => {
   )
 }
 
-export default AutosList
+export default RenderAutos

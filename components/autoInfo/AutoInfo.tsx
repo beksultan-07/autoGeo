@@ -1,6 +1,6 @@
-import { autoType } from 'components/autosList/AutosList'
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { autoType } from '../renderAutos/RenderAutos'
 
 type Props = {
     autoInfo: autoType

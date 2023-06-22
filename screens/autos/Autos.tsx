@@ -1,10 +1,69 @@
 import React from 'react'
-import { View } from 'react-native'
+import { StyleSheet, Text, ScrollView, View } from 'react-native'
+import { getAutos } from '../../services/getAutos'
+import { autoType } from 'components/renderAutos/RenderAutos'
 
 const Autos = () => {
+
+  const [autos, setAutos] = React.useState<Array<autoType>>([])
+
+
+  React.useEffect(() => {
+    setAutos(getAutos())
+  }, [])
+
   return (
-    <View>Autos</View>
+    <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerItem}>Id</Text>
+        <Text style={styles.headerItem}>Owner Name</Text>
+        <Text style={styles.headerItem}>Category</Text>
+      </View>
+      {
+        autos ? autos.map((auto) => (
+          <View key={auto.id} style={styles.body}>
+            <Text style={styles.headerItem}>{auto.id}</Text>
+            <Text style={styles.headerItem}>{auto.owner}</Text>
+            <Text style={styles.headerItem}>{auto.category}</Text>
+          </View>
+        ))
+        : <Text>...Loading...</Text>
+      }
+    </ScrollView>
   )
 }
+
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#fff',
+    paddingTop: 40,
+    position: 'relative',
+    paddingHorizontal: 10
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottomColor: 'lightgray',
+    borderTopColor: '#fff',
+    borderRightColor: '#fff',
+    borderLeftColor: '#fff',
+    borderWidth: 1
+  },
+  headerItem: {
+    flex: 1,
+    textAlign: 'left',
+    paddingVertical: 10,
+    paddingHorizontal: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgray',
+  }, 
+  body: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  }
+})
 
 export default Autos
